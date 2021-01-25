@@ -5,6 +5,9 @@ from moviepy.editor import *
 # video/playlist is stored in a separate file that i have decided not to upload
 from options import *
 
+# used to clean the audio directory
+import clean
+
 # the current directory
 CWD = os.getcwd()
 
@@ -12,6 +15,7 @@ CWD = os.getcwd()
 def download(url):
     # change to the directory of the youtube downloader
     os.chdir(Path)
+    # print(os.listdir())
 
     # the command to download the videos
     dl_cmd = "python __main__.py"
@@ -60,6 +64,12 @@ def rip_audio():
         # open the video and rip the audio into a different folder
         video = VideoFileClip(file)
         video.audio.write_audiofile(os.path.join("..", "audio", file + ".mp3"))
+
+    # return to the original directory
+    os.chdir(CWD)
+
+    # clean the filenames
+    clean()
 
 def main():
     # check to see if the necessary subdirectories exist
