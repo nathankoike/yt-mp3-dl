@@ -6,7 +6,7 @@ from moviepy.editor import *
 from options import *
 
 # used to clean the audio directory
-import clean
+from clean import *
 
 # the current directory
 CWD = os.getcwd()
@@ -53,6 +53,7 @@ def rip_audio():
 
     # for every video in the directory
     for file in files:
+        print(files.index(file), "of", len(files))
         # if we dont have a video file
         if ".mp4" not in file:
             continue
@@ -75,10 +76,14 @@ def main():
     # check to see if the necessary subdirectories exist
     dir = os.listdir()
 
+    print(os.getcwd())
+
     # make the subdirectories if necessary
     if "audio" not in dir:
+        print("making audio directory")
         os.system("mkdir audio")
     if "videos" not in dir:
+        print("making video directory")
         os.system("mkdir videos")
 
     # the url to the video/playlist to download
